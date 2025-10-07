@@ -1,0 +1,39 @@
+# BTAD Dataset Configuration (Multi-Stage)
+dataset: "btad"
+data_root: "/home/phd/datasets/"
+task_type: "all"  # or "01", "02", "03"
+input_size: [256, 256]
+normalize_mean: [0.485, 0.456, 0.406]
+normalize_std: [0.229, 0.224, 0.225]
+
+batch_size: 2
+num_workers: 4
+device: "cuda:0"
+task_id: "T1"
+instruction: "T"
+task_stage: 1
+
+dae:
+  latent_dim_prim: 512
+  latent_dim_sem: 256
+  lambda_mi: 2.1
+  gamma_smooth: 0.28
+
+dpg:
+  eta_fim: 1.5e-4
+  stage_configs:
+    - input_dim: 768
+      hidden_dim: 512
+      output_dim: 256
+    - input_dim: 256
+      hidden_dim: 128
+      output_dim: 1
+
+ssm:
+  r: 80
+  buffer_size: 65
+
+log_dir: "experiments/logs"
+checkpoint_dir: "experiments/checkpoints"
+results_dir: "experiments/results"
+multi_stage: true

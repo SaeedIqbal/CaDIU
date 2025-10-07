@@ -1,0 +1,33 @@
+# MVTec-AD Dataset Configuration
+dataset: "mvtec"
+data_root: "/home/phd/datasets/"
+task_type: "all"  # or "bottle", "cable", etc.
+input_size: [256, 256]
+normalize_mean: [0.485, 0.456, 0.406]
+normalize_std: [0.229, 0.224, 0.225]
+
+batch_size: 4
+num_workers: 4
+device: "cuda:0"
+task_id: "T1"
+instruction: "T"
+task_stage: null
+
+dae:
+  latent_dim_prim: 512
+  latent_dim_sem: 256
+  lambda_mi: 1.8
+  gamma_smooth: 0.3
+
+dpg:
+  eta_fim: 1e-4
+  stage_configs: []
+
+ssm:
+  r: 64
+  buffer_size: 50
+
+log_dir: "experiments/logs"
+checkpoint_dir: "experiments/checkpoints"
+results_dir: "experiments/results"
+multi_stage: false
