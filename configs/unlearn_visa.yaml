@@ -1,0 +1,29 @@
+# Task to unlearn
+task_id: "T1"
+task_stage: null  # For multi-stage, e.g., 1
+
+# Model config (must match training config)
+input_size: [256, 256]
+dae:
+  latent_dim_prim: 512
+  latent_dim_sem: 256
+  lambda_mi: 1.8
+  gamma_smooth: 0.3
+dpg:
+  eta_fim: 1e-4
+  stage_configs:  # Only if multi_stage: true
+    - input_dim: 768
+      hidden_dim: 512
+      output_dim: 256
+    - input_dim: 256
+      hidden_dim: 128
+      output_dim: 1
+ssm:
+  r: 64
+  buffer_size: 50
+multi_stage: false
+
+# Paths
+checkpoint_dir: "experiments/checkpoints"
+log_dir: "experiments/logs"
+device: "cuda:0"

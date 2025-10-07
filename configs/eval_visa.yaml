@@ -1,0 +1,30 @@
+# Task to evaluate
+task_id: "T1"
+dataset: "visa"
+task_type: "all"
+
+# Model config (must match training/unlearning)
+input_size: [256, 256]
+normalize_mean: [0.485, 0.456, 0.406]
+normalize_std: [0.229, 0.224, 0.225]
+dae:
+  latent_dim_prim: 512
+  latent_dim_sem: 256
+  lambda_mi: 1.8
+  gamma_smooth: 0.3
+dpg:
+  eta_fim: 1e-4
+  stage_configs: []
+ssm:
+  r: 64
+  buffer_size: 50
+multi_stage: false
+
+# Paths
+data_root: "/home/phd/datasets/"
+checkpoint_dir: "experiments/checkpoints"
+results_dir: "experiments/results"
+log_dir: "experiments/logs"
+device: "cuda:0"
+batch_size: 4
+num_workers: 4
